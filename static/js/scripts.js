@@ -56,8 +56,8 @@ $(function () {
 		document.getElementById("totalT").innerHTML = ("0"+total[0]).slice(-2)+":"+("0"+total[1]).slice(-2)+":"+("0"+total[2]).slice(-2);
 	};
 
-	fac.queue = function(name, prioirty){
-		if (prioirty == 1){
+	fac.queue = function(name, priority){
+		if (priority == 1){
 			queueOne.push(name);
 		}
 		else{
@@ -66,18 +66,18 @@ $(function () {
 		q='';
 		for (var i=0; i<queueTwo.length; i++){
 			name = "'"+queueTwo[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile"> <img id="nextImg" width="200" height="200" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
+		q+='<div class="clearfix"></div> <hr>';
 		for (var i=0; i<queueOne.length; i++){
 			name = "'"+queueOne[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile"> <img id="nextImg" width="200" height="200" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
 		document.getElementById("nextElement").innerHTML = q;
 	};
 
-	fac.removeQueue = function(name, prioirty){
-		console.log(name)
-		if (prioirty == 1){
+	fac.removeQueue = function(name, priority){
+		if (priority == 1){
 			var index = queueOne.indexOf(name);
 			queueOne.splice(index,1);
 		}
@@ -88,11 +88,12 @@ $(function () {
 		q='';
 		for (var i=0; i<queueTwo.length; i++){
 			name = "'"+queueTwo[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile"> <img id="nextImg" width="200" height="200" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2");"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
+		q+='<div class="clearfix"></div> <hr>';
 		for (var i=0; i<queueOne.length; i++){
 			name = "'"+queueOne[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile"> <img id="nextImg" width="200" height="200" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
 		document.getElementById("nextElement").innerHTML = q;
 	};
@@ -116,11 +117,12 @@ $(function () {
 		q='';
 		for (var i=0; i<queueTwo.length; i++){
 			name = "'"+queueTwo[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile"> <img id="nextImg" width="200" height="200" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
+		q+='<div class="clearfix"></div> <hr>';
 		for (var i=0; i<queueOne.length; i++){
 			name = "'"+queueOne[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile"> <img id="nextImg" width="200" height="200" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
 		document.getElementById("nextElement").innerHTML = q;
 	};
