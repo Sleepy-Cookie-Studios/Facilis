@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block title %}Facilitate{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+{% if list %}
+	<div class="container col-md-9 col-sm-8">
+		<h1 class="text-center">Participants</h1>
+		{%for i in list%}
+			<div class="col-md-3 col-sm-4 col-xs-6">
+				<div id="{{i.id|string}}" class="pax-tile">
+					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
+					<span class="name">
+						{{i.name}}
+						{%if i.status==1%}
+							<span class="glyphicon glyphicon-ice-lolly"></span>
+						{%elif i.status==2%}
+							<span class="glyphicon glyphicon-baby-formula"></span>
+						{%elif i.status==3%}
+							<span class="glyphicon glyphicon-pawn"></span>
+						{%elif i.status==4%}
+							<span class="glyphicon glyphicon-sunglasses"></span>
+						{%endif%}
+					</span>
+					<span id="oneFinger" class="name glyphicon glyphicon-play" onclick="$fac.queue('{{i.name}}',1);"></span>
+					<span id="twoFingers" class="name glyphicon glyphicon-forward" onclick="$fac.queue('{{i.name}}',2);"></span>
+				</div>
+			</div>
+		{%endfor%}
+	</div>
+	<div class="col-md-3 col-sm-4">
+		<h1 class="text-center">Queue</h1>
+		<div class="col-xs-12 text-center">
+			Total Time: <span id="totalT">00:00:00</div>
+		<div class="col-xs-12 text-center">
+			Speaker Time: <span id="speakerT">00:00</div>
+		<div class="col-xs-12">
+			<a href="#" onclick="$fac.nextSpeaker();">
+				<div id="next" class="pax-tile">
+					<img id="nextImg" width="200" height="200" src="/static/images/Jane Doe.jpg" alt="Next to talk">
+					<span id="nextName" class="name">Jane Doe</span>
+				</div>
+			</a>
+		</div>
+		<div class="clearfix"></div>
+		<hr>
+		<div id="nextElement"></div>
+	</div>
+{% endif %}
+
+<script type="text/javascript">
+	setInterval("$fac.times()",1000);
+</script>
+
+{% endblock %}

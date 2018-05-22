@@ -1,0 +1,222 @@
+body {
+	font-size: 16px;
+	font-family: 'Oxygen', sans-serif;
+	color: #000;
+}
+
+th, td {
+    padding: 5px;
+}
+
+textarea.fixxxed {
+    resize: none;
+}
+
+h2{
+  clear: both;
+}
+
+/*Header*/
+#header-nav {
+  background-color: #222;
+  border-radius: 0;
+  border: 0;
+}
+
+#logo-img {
+  background: url('../images/logo.png') no-repeat;
+  width: 150px;
+  height: 90px;
+  margin: 10px 0px 10px 0;
+  background-size: 100% 100%;
+}
+
+.navbar-brand {
+  padding-top: 25px;
+}
+.navbar-brand h1 { /*Name*/
+  color: #fff;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #222;
+  margin-bottom: 0;
+  line-height: .75;
+}
+.navbar-brand a:hover, .navbar-brand a:focus {
+  text-decoration: none;
+}
+#nav-list {
+  margin-top: 15px;
+}
+#nav-list a {
+  color: #fff ;
+  text-align: center;
+}
+#nav-list a:hover {
+  background: #777777;
+}
+#nav-list a span {
+  font-size: 1.6em;
+}
+.navbar-header button.navbar-toggle, .navbar-header .icon-bar {
+  border: 1px solid #fff ;
+}
+.navbar-header button.navbar-toggle {
+  clear: both;
+  margin-top: -55px;
+}
+/*End Header*/
+
+/*Footer*/
+.panel-footer {
+	margin-top: 30px;
+	padding-top: 30px;
+	padding-bottom: 15px;
+	background-color: #222;
+  	border-top: 0;
+  	line-height: .8;
+  	font-size: 0.8em;
+}
+.panel-footer section{
+	margin-top: 15px;
+	color: #fff;
+}
+.panel-footer div.row {
+	margin-bottom: 35px;
+}
+/*End Footer*/
+
+/*Paxes*/
+.pax-tile {
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 15px;
+}
+
+.pax-tile span.name {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  background-color: #000;
+  color: #fff;
+  opacity: .8;
+}
+
+.pax-tile div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10%;
+  height: 10%;
+  text-align: center;
+  background-color: #f00;
+  color: #fff;
+  line-height: 1;
+  padding: auto;
+}
+
+.pax-tile:hover{
+  box-shadow: 0 1px 5px 1px #ccc;
+}
+
+.selected{
+  border: 2px solid green;
+}
+
+/**/
+.pax-tile span#oneFinger {
+  position: absolute;
+  top: 70%;
+  bottom: 27px;
+  left: 0;
+  width: 50%;
+  font-size: 1.7em;
+  line-height: 1.2;
+}
+
+.pax-tile span#twoFingers {
+  position: absolute;
+  top: 70%;
+  bottom: 27px;
+  right: 0;
+  width: 50%;
+  font-size: 1.7em;
+  line-height: 1.2;
+}
+.pax-tile span#oneFinger:hover, .pax-tile span#twoFingers:hover {
+  background-color: #D6D6D6;
+}
+/**/
+label{
+  margin-top: 15px;
+}
+
+/********** Medium devices only **********/
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* Header */
+  #logo-img {
+    width: 125px;
+    height: 80px;
+    margin: 5px 5px 5px 0;
+  }
+  /* End Header */
+}
+
+/********** Small devices only **********/
+@media (min-width: 768px) and (max-width: 991px) {
+  body {
+  font-size: 14px;
+  }
+  .navbar-brand {
+    padding-top: 10px;
+    height: 80px;
+  }
+  #nav-list {
+    margin-top: 5px;
+  }
+  .navbar-nav>li>a{
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+}
+
+/********** Extra small devices only **********/
+@media (max-width: 767px) {
+  body {
+  font-size: 12px;
+  }
+  h1, h2{
+    size: 0.8em;
+  }
+  /* Header */
+  .navbar-brand {
+    padding-top: 10px;
+    height: 80px;
+  }
+  .navbar-brand h1 { /* Name */
+    font-size: 5vw; /* 1vw = 1% of viewport width */
+  }
+  #collapsable-nav a { /* Collapsed nav text */
+    font-size: 1.2em;
+  }
+  #collapsable-nav a span { /* Collapsed nav glyph */
+    font-size: 1em;
+    margin-right: 5px;
+  }
+  /* End Header */
+
+  /* Footer */
+  .panel-footer section {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  /* End Footer */
+}

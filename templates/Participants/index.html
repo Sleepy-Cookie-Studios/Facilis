@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Participants</h1>
+{% if list %}
+	{%for i in list%}
+		<div class="col-md-3 col-sm-4 col-xs-6">
+			<a href="#" onclick="$fac.select({{i.id}});">
+				<div id="{{i.id|string}}" class="pax-tile">
+					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
+					<span class="name">
+						{{i.name}}
+						{%if i.status==1%}
+							<span class="glyphicon glyphicon-ice-lolly"></span>
+						{%elif i.status==2%}
+							<span class="glyphicon glyphicon-baby-formula"></span>
+						{%elif i.status==3%}
+							<span class="glyphicon glyphicon-pawn"></span>
+						{%elif i.status==4%}
+							<span class="glyphicon glyphicon-sunglasses"></span>
+						{%endif%}
+					</span>
+					<a href="{{url_for('deleteParticipant', pax=i.id)}}"><div>x</div></a>
+				</div>
+			</a>
+		</div>
+	{%endfor%}
+{% else %}
+  <h1>You have no friends</h1>
+{% endif %}
+<div class="clearfix"></div>
+<div>
+	<a href="{{url_for('newParticipant')}}">
+    Add Profile</a>
+</div>
+
+<div>
+	<a id="sessionMaker" href="{{url_for('facilitate', lista=[None])}}">
+    Start Facilitation</a>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %} - Facilis</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <nav id="header-nav" class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a href="/" class="pull-left visible-md visible-lg">
+              <div id="logo-img" alt="Logo image"></div>
+            </a>
+
+            <div class="navbar-brand">
+              <a href="/"><h1>Facilis</h1></a>
+            </div>
+
+            <button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <div id="collapsable-nav" class="collapse navbar-collapse">
+           <ul id="nav-list" class="nav navbar-nav navbar-right">
+            <li id="navHomeButton" class="visible-xs">
+              <a href="/">
+                <span class="glyphicon glyphicon-home"></span> Home</a>
+            </li>
+            <!-- <li id="navProfessionsButton">
+              <a href="/creatures">
+                <span class="glyphicon glyphicon-knight"></span><br class="hidden-xs"> Creatures</a>
+            </li> -->
+           </ul>
+          </div>
+        </div><!-- .container -->
+      </nav><!-- #header-nav -->
+    </header>
+    <div class="container">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class="flashes alert alert-danger list-unstyled">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+    </div>
+
+    <div id="content" class="container">{% block content %}{% endblock %}</div>
+    
+    <footer class="panel-footer">
+        <div class="container">
+          <div class="row">
+            <section class="text-center">
+              Made with <span class="glyphicon glyphicon-heart" style="color:red;font-size:0.7em;"></span> by Statics in Thessaloniki
+            </section>
+          </div>
+        </div> 
+      </footer>
+    <div id="footer">
+      {% block footer %}
+      <script type="text/javascript" src="{{url_for('static', filename='js/jquery-2.1.4.min.js')}}"></script>
+      <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+      <script type="text/javascript" src="{{url_for('static', filename='js/scripts.js')}}"></script>
+      {% endblock %}
+    </div>
+  </body>
+</html>

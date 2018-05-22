@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Create Participant{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+{% if error %}
+    <p class="alert alert-danger"><strong>Error:</strong> {{ error }}
+{% endif %}
+
+<h1>New Participant</h1>
+
+<form action="{{ url_for('createParticipant') }}" method="post" enctype="multipart/form-data">
+    <label>Name</label><br>
+    <textarea class="fixxxed" rows="1" cols="16" name="name"></textarea><br>
+    
+    <label>Status</label><br>
+    <input type="radio" name="status" value="1"> Newbie <br>
+    <input type="radio" name="status" value="2"> Baby <br>
+    <input type="radio" name="status" value="3"> Full <br>
+    <input type="radio" name="status" value="4"> Alumni <br>
+
+    <label>Photo</label>
+    <input type="file" name="photo">
+
+    <input style="margin-top: 15px;"type="submit">
+</form>
+
+<div>
+  <a href="{{url_for('participants')}}">
+    Back
+  </a>
+</div>
+
+{% endblock %}
