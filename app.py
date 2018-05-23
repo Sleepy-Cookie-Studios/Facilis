@@ -27,7 +27,10 @@ configure_uploads(app, photos)
 @app.route('/')
 def participants():
 	pax = session.query(Participant).all()
-	return render_template('Participants/index.html', list=pax)
+	ac = list()
+	if 'pax' in login_session:
+		ac = login_session['pax']
+	return render_template('Participants/index.html', list=pax, active=ac)
 
 @app.route('/pax/delete/<pax>')
 def deleteParticipant(pax):
@@ -57,14 +60,30 @@ def createParticipant():
 		session.rollback()
 		return render_template('Participants/form.html', error=str(sys.exc_info()[1]).split(") ")[1].split(" [")[0])
 
-@app.route('/facilitate/<lista>')
-def facilitate(lista):
-	if lista == '[None]':
+@app.route('/sess/')
+@app.route('/sess/<lista>')
+def createSession(lista=None):
+	# if 'pax' in login_session:
+	# 	del login_session['pax']
+	if lista == None:
+		lista = list()
+	else:
+		lista = lista.split(",")
+	if 'pax' in login_session:
+		print lista
+		print login_session['pax']
+		lista += [x for x in login_session['pax'] if -x not in map(int,lista)]
+		print lista
+
+
+	if lista == [None]:
 		flash("No participants selected")
 		return redirect(url_for('participants'))
 	else:
-		lista = lista.split(",")
 		ls = session.query(Participant).filter(Participant.id.in_(lista)).all()
+		login_session['pax']=list()
+		for i in ls:
+			login_session['pax'].append(i.id)
 		return render_template('Sessions/index.html', list=ls)
 
 if __name__ == '__main__':

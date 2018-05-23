@@ -11,7 +11,7 @@
 	{%for i in list%}
 		<div class="col-md-3 col-sm-4 col-xs-6">
 			<a href="#" onclick="$fac.select({{i.id}});">
-				<div id="{{i.id|string}}" class="pax-tile">
+				<div id="{{i.id|string}}" class="pax-tile {%if active%}{%if i.id in active%}selected{%endif%}{%endif%}">
 					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
 					<span class="name">
 						{{i.name}}
@@ -40,10 +40,9 @@
 </div>
 
 <div>
-	<a id="sessionMaker" href="{{url_for('facilitate', lista=[None])}}">
-    Start Facilitation</a>
+	<a id="sessionMaker" href="{{url_for('createSession', lista='')}}">
+    Create new session</a>
 </div>
-
 
 
 {% endblock %}

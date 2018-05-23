@@ -19,7 +19,11 @@ $(function () {
 		classes = ogClasses.split(" ");
 		if (classes[1] == "selected"){
 			var index = list.indexOf(id);
+			if (index==-1){
+				list.push(-id);
+			}else{
 			list.splice(index,1);
+			}
 		    ogClasses = ogClasses.replace(new RegExp(" selected", "g"), "");
 		} else {
 		    ogClasses += " selected";
@@ -28,7 +32,7 @@ $(function () {
 	    document.getElementById(id.toString()).className = ogClasses;
 
 		var thingy = document.getElementById("sessionMaker");
-		thingy.setAttribute("href","facilitate/"+list);
+		thingy.setAttribute("href","sess/"+list);
 	};
 
 	fac.times = function(){
@@ -63,17 +67,8 @@ $(function () {
 		else{
 			queueTwo.push(name);
 		}
-		q='';
-		for (var i=0; i<queueTwo.length; i++){
-			name = "'"+queueTwo[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
-		}
-		q+='<div class="clearfix"></div> <hr>';
-		for (var i=0; i<queueOne.length; i++){
-			name = "'"+queueOne[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
-		}
-		document.getElementById("nextElement").innerHTML = q;
+
+		printQueue();
 	};
 
 	fac.removeQueue = function(name, priority){
@@ -85,17 +80,8 @@ $(function () {
 			var index = queueTwo.indexOf(name);
 			queueTwo.splice(index,1);
 		}
-		q='';
-		for (var i=0; i<queueTwo.length; i++){
-			name = "'"+queueTwo[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
-		}
-		q+='<div class="clearfix"></div> <hr>';
-		for (var i=0; i<queueOne.length; i++){
-			name = "'"+queueOne[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
-		}
-		document.getElementById("nextElement").innerHTML = q;
+
+		printQueue();
 	};
 
 	fac.nextSpeaker = function(){
@@ -114,6 +100,11 @@ $(function () {
 		document.getElementById("nextName").innerHTML = name;
 		document.getElementById("speakerT").innerHTML = ("00:00");
 
+		printQueue();
+	};
+
+
+	printQueue = function(){
 		q='';
 		for (var i=0; i<queueTwo.length; i++){
 			name = "'"+queueTwo[i]+"'";
