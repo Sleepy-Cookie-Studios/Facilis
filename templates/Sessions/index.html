@@ -32,7 +32,11 @@
 		{%endfor%}
 	</div>
 	<div class="col-md-3 col-sm-4">
-		<h1 class="text-center">Queue</h1>
+		{%if finger or fingers%}
+			<h1 id="tempTitle" class="text-center" onclick="$fac.queueRes({{finger}},{{fingers}});">Resume Queue</h1>
+		{%else%}
+			<h1 class="text-center">Queue</h1>
+		{%endif%}
 		<div class="col-xs-12 text-center">
 			Total Time: <span id="totalT">00:00:00</div>
 		<div class="col-xs-12 text-center">
@@ -52,7 +56,7 @@
 {% endif %}
 
 <div>
-	<a href="{{url_for('participants')}}">
+	<a id="sessionSaver" href="{{url_for('participants', )}}">
     Add/Remove Participants</a>
 </div>
 

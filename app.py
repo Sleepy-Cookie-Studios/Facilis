@@ -70,13 +70,9 @@ def createSession(lista=None):
 	else:
 		lista = lista.split(",")
 	if 'pax' in login_session:
-		print lista
-		print login_session['pax']
 		lista += [x for x in login_session['pax'] if -x not in map(int,lista)]
-		print lista
 
-
-	if lista == [None]:
+	if lista == []:
 		flash("No participants selected")
 		return redirect(url_for('participants'))
 	else:
@@ -84,7 +80,31 @@ def createSession(lista=None):
 		login_session['pax']=list()
 		for i in ls:
 			login_session['pax'].append(i.id)
-		return render_template('Sessions/index.html', list=ls)
+		f = None
+		if 'finger' in login_session:
+			f = login_session['finger']
+		fs = None
+		if 'fingers' in login_session:
+			fs = login_session['fingers']
+		return render_template('Sessions/index.html', list=ls, finger=f, fingers=fs)
+
+@app.route('/sess/save/<info>')
+def saveSession(info):
+	info = info.split("|")
+	login_session['finger'] = map(str,info[1].split(','))
+	login_session['fingers'] = map(str,info[0].split(','))
+	return redirect(url_for('participants'))
+
+@app.route('/sess/scrap')
+def scrapSession():
+	if 'pax' in login_session:
+		del login_session['pax']
+	if 'finger' in login_session:
+		del login_session['finger']
+	if 'fingers' in login_session:
+		del login_session['fingers']
+
+	return redirect(url_for('participants'))
 
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'

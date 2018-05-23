@@ -103,6 +103,19 @@ $(function () {
 		printQueue();
 	};
 
+	fac.queueRes = function(ones, twos){
+		document.getElementById("tempTitle").innerHTML = "Queue";
+
+		for(var i=0; i<ones.length; i++){
+			if (ones[i]==''){continue;}
+			$fac.queue(ones[i],1);
+		}
+		for(var i=0; i<twos.length; i++){
+			if (twos[i]==''){continue;}
+			$fac.queue(twos[i],2);
+		}
+
+	};
 
 	printQueue = function(){
 		q='';
@@ -116,6 +129,9 @@ $(function () {
 			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
 		document.getElementById("nextElement").innerHTML = q;
+
+		var thingy = document.getElementById("sessionSaver");
+		thingy.setAttribute("href","/sess/save/"+queueTwo+"|"+queueOne);
 	};
 
 	global.$fac = fac;
