@@ -78,14 +78,20 @@ def createSession(lista=None):
 	else:
 		ls = session.query(Participant).filter(Participant.id.in_(lista)).all()
 		login_session['pax']=list()
+		names = list()
 		for i in ls:
 			login_session['pax'].append(i.id)
-		f = None
+			names.append(i.name)
+		f = list()
 		if 'finger' in login_session:
-			f = login_session['finger']
-		fs = None
+			for x in login_session['finger']:
+				if x in names:
+					f.append(x)
+		fs = list()
 		if 'fingers' in login_session:
-			fs = login_session['fingers']
+			for x in login_session['fingers']:
+				if x in names:
+					fs.append(x)
 		return render_template('Sessions/index.html', list=ls, finger=f, fingers=fs)
 
 @app.route('/sess/save/<info>')
