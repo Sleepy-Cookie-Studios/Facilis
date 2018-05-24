@@ -8,10 +8,10 @@
 
 {% if list %}
 	<div class="wrappper">
-	<div class="container col-md-9 col-sm-8">
-		<h1>Participants</h1>
+	<div class="container col-md-9 col-sm-8 indyScroll">
+		<h1 class="text-center">Participants</h1>
 		{%for i in list%}
-			<div class="col-md-3 col-sm-4 col-xs-6">
+			<div class="col-md-4 col-sm-6 col-xs-6 col-lg-3">
 				<div id="{{i.id|string}}" class="pax-tile">
 					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
 					<span class="name">

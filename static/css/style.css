@@ -25,8 +25,8 @@ h2{
 
 #logo-img {
   background: url('../images/logo.png') no-repeat;
-  width: 150px;
-  height: 90px;
+  width: 75px;
+  height: 45px;
   margin: 10px 0px 10px 0;
   background-size: 100% 100%;
 }
@@ -70,9 +70,9 @@ h2{
 
 /*Footer*/
 .panel-footer {
-	margin-top: 30px;
-	padding-top: 30px;
-	padding-bottom: 15px;
+	margin-top: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	background-color: #222;
   	border-top: 0;
   	line-height: .8;
@@ -83,7 +83,7 @@ h2{
 	color: #fff;
 }
 .panel-footer div.row {
-	margin-bottom: 35px;
+	margin-bottom: 15px;
 }
 /*End Footer*/
 
@@ -109,7 +109,7 @@ h2{
   width: 100%;
   min-height: 40px;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.0em;
   text-transform: capitalize;
   background-color: #fff;
   color: #000;
@@ -189,7 +189,6 @@ label{
   opacity: 0.8;
   color: #fff;
   line-height: 1;
-  padding: 5px;
   border-radius: 10px;
 }
 
@@ -197,14 +196,14 @@ label{
   padding-top: 5px;
 }
 
-.pax-tile img {
+.pax-tile-small img {
   object-fit: cover;
 }
 
 .wrappper{
   display: flex;
   overflow: hidden;
-  height: 100vh;
+  height: 71vh;
   backface-visibility: hidden;
   will-change: overflow;
 }
@@ -212,12 +211,17 @@ label{
 .indyScroll{
   overflow: auto;
   height: auto;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
 }
 
 .indyScroll::-webkit-scrollbar{
   display: none;
+}
+
+/*Large devices only*/
+@media (min-width: 1200px) and (max-width:2559px){
+  .wrappper{
+    height:78vh;
+  }
 }
 
 /********** Medium devices only **********/
