@@ -201,6 +201,25 @@ label{
   object-fit: cover;
 }
 
+.wrappper{
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+  backface-visibility: hidden;
+  will-change: overflow;
+}
+
+.indyScroll{
+  overflow: auto;
+  height: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+}
+
+.indyScroll::-webkit-scrollbar{
+  display: none;
+}
+
 /********** Medium devices only **********/
 @media (min-width: 992px) and (max-width: 1199px) {
   /* Header */

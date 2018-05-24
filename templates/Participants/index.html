@@ -10,8 +10,7 @@
 {% if list %}
 	{%for i in list%}
 		<div class="col-md-3 col-sm-4 col-xs-6">
-			<a href="#" onclick="$fac.select({{i.id}});">
-				<div id="{{i.id|string}}" class="pax-tile {%if active%}{%if i.id in active%}selected{%endif%}{%endif%}">
+				<div id="{{i.id|string}}" class="pax-tile {%if active%}{%if i.id in active%}selected{%endif%}{%endif%}" onclick="$fac.select({{i.id}});">
 					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
 					<span class="name">
 						{{i.name}}
@@ -27,7 +26,6 @@
 					</span>
 					<a href="{{url_for('deleteParticipant', pax=i.id)}}"><div>x</div></a>
 				</div>
-			</a>
 		</div>
 	{%endfor%}
 {% else %}
