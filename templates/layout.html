@@ -34,10 +34,15 @@
               <a href="/">
                 <span class="glyphicon glyphicon-home"></span> Home</a>
             </li>
-            <!-- <li id="navProfessionsButton">
-              <a href="/creatures">
-                <span class="glyphicon glyphicon-knight"></span><br class="hidden-xs"> Creatures</a>
-            </li> -->
+            <li id="navSessionStartButton">
+              
+            </li>
+            {%if 'pax' in session%}
+              <li id="navSessionScrapButton">
+                <a href="/sess/scrap">
+                  <span class="glyphicon glyphicon-trash"></span><br class="hidden-xs"> Delete Session</a>
+              </li>
+            {%endif%}
            </ul>
           </div>
         </div><!-- .container -->

@@ -56,16 +56,9 @@
 	</div>
 </div>
 {% endif %}
-<div class="clearfix"></div>
-<div>
-	<a id="sessionSaver" href="{{url_for('participants')}}">
-    Add/Remove Participants</a>
-
-	<a id="sessionSaver" href="{{url_for('scrapSession')}}">
-    End Session</a>
-</div>
-
 <script type="text/javascript">
+	document.getElementById("navSessionStartButton").innerHTML = '<a id="sessionSaver" href="/"> <span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-minus"></span><br class="hidden-xs"> Add/Remove Participants</a>';
+
 	setInterval("$fac.times()",1000);
 </script>
 

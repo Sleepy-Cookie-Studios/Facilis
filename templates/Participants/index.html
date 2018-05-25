@@ -8,10 +8,20 @@
 
 <h1>Participants</h1>
 {% if list %}
-	<textarea id="search" class="col-xs-12" rows="1" onblur="$fac.search();" onkeyup="$fac.delayedSearch();"></textarea>
+	<textarea id="search" class="col-xs-12" rows="1" onkeyup="$fac.delayedSearch();"></textarea>
+	<div class="col-md-3 col-sm-4 col-xs-6">
+				<div class="pax-tile">
+					<a href="{{url_for('newParticipant')}}">
+						<img width="200" height="200" src="/static/images/Jane Doe.jpg" alt="Create new Participant">
+						<span class="name">
+							Create new Participant
+						</span>
+					</a>
+				</div>
+		</div>
 	{%for i in list%}
 		<div class="col-md-3 col-sm-4 col-xs-6">
-				<div id="{{i.id|string}}" class="pax-tile {%if active%}{%if i.id in active%}selected{%endif%}{%endif%}" onclick="$fac.select({{i.id}});">
+				<div id="{{i.id|string}}" class="pax-tile{%if active%}{%if i.id in active%} selected{%endif%}{%endif%}" onclick="$fac.select({{i.id}});">
 					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
 					<span id="{{i.name}}" class="name">
 						{{i.name}}
@@ -32,20 +42,9 @@
 {% else %}
   <h1>You have no friends</h1>
 {% endif %}
-<div class="clearfix"></div>
-<div>
-	<a href="{{url_for('newParticipant')}}">
-    Add Profile</a>
-</div>
 
-<div>
-	<a id="sessionMaker" href="{{url_for('createSession', lista='')}}">
-    Create new session</a>
-</div>
-
-<div>
-	<a href="{{url_for('scrapSession')}}">
-    Delete session</a>
-</div>
+<script type="text/javascript">
+	document.getElementById("navSessionStartButton").innerHTML = '<a id="sessionMaker" href="/sess/"> <span class="glyphicon glyphicon-comment"></span><br class="hidden-xs"> {%if "pax" in session%}Continue Session{%else%}Start Session{%endif%}</a>';
+</script>
 
 {% endblock %}

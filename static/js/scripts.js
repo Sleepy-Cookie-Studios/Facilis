@@ -15,6 +15,7 @@ $(function () {
 	var list = [];
 
 	fac.select = function(id){
+		console.log(id);
 		ogClasses = document.getElementById(id.toString()).className;
 		classes = ogClasses.split(" ");
 		if (classes[1] == "selected"){
@@ -120,18 +121,18 @@ $(function () {
 	fac.search = function(){
 		var name = document.getElementById("search").value;
 		var res = document.getElementById(name)
-		console.log(name);
 		if (res){
 			var searchAnchor = document.createElement('a');
 		    searchAnchor.setAttribute("href", "#"+name);
 		    searchAnchor.click();
 		    searchAnchor.remove();
+    		fac.select(parseInt(res.parentElement.id));
 		}
 	}
-
+	var a;
 	fac.delayedSearch = function(){
 		clearTimeout(a);
-		var a = setTimeout(fac.search,1000);
+		a = setTimeout(fac.search,1000);
 	}
 
 	printQueue = function(){
