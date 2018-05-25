@@ -129,6 +129,11 @@ $(function () {
 		}
 	}
 
+	fac.delayedSearch = function(){
+		clearTimeout(a);
+		var a = setTimeout(fac.search,1000);
+	}
+
 	printQueue = function(){
 		q='';
 		for (var i=0; i<queueTwo.length; i++){

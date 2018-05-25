@@ -8,7 +8,7 @@
 
 <h1>Participants</h1>
 {% if list %}
-	<textarea id="search" class="col-xs-12" rows="1" onblur="$fac.search();"></textarea>
+	<textarea id="search" class="col-xs-12" rows="1" onblur="$fac.search();" onkeyup="$fac.delayedSearch();"></textarea>
 	{%for i in list%}
 		<div class="col-md-3 col-sm-4 col-xs-6">
 				<div id="{{i.id|string}}" class="pax-tile {%if active%}{%if i.id in active%}selected{%endif%}{%endif%}" onclick="$fac.select({{i.id}});">
