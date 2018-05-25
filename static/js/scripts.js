@@ -117,6 +117,18 @@ $(function () {
 
 	};
 
+	fac.search = function(){
+		var name = document.getElementById("search").value;
+		var res = document.getElementById(name)
+		console.log(name);
+		if (res){
+			var searchAnchor = document.createElement('a');
+		    searchAnchor.setAttribute("href", "#"+name);
+		    searchAnchor.click();
+		    searchAnchor.remove();
+		}
+	}
+
 	printQueue = function(){
 		q='';
 		for (var i=0; i<queueTwo.length; i++){

@@ -200,6 +200,13 @@ label{
   object-fit: cover;
 }
 
+#search{
+  margin: 10px 0px;
+  resize: none;
+  border-radius: 10px;
+}
+
+/*Session*/
 .wrappper{
   display: flex;
   overflow: hidden;
