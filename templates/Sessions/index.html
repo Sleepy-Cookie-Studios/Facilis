@@ -13,9 +13,9 @@
 		{%for i in list%}
 			<div class="col-md-4 col-sm-6 col-xs-6 col-lg-3">
 				<div id="{{i.id|string}}" class="pax-tile">
-					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
+					<img width="200" height="200" src="/static/images/{{i.name}} {{i.surname}}.jpg" alt="{{i.name}}">
 					<span class="name">
-						{{i.name}}
+						{{i.name}} {{i.surname}}
 						{%if i.status==1%}
 							<span class="glyphicon glyphicon-ice-lolly"></span>
 						{%elif i.status==2%}
@@ -26,8 +26,8 @@
 							<span class="glyphicon glyphicon-sunglasses"></span>
 						{%endif%}
 					</span>
-					<span id="oneFinger" class="name glyphicon glyphicon-play" onclick="$fac.queue('{{i.name}}',1);"></span>
-					<span id="twoFingers" class="name glyphicon glyphicon-forward" onclick="$fac.queue('{{i.name}}',2);"></span>
+					<span id="oneFinger" class="name glyphicon glyphicon-play" onclick="$fac.queue('{{i.name}} {{i.surname}}',1);"></span>
+					<span id="twoFingers" class="name glyphicon glyphicon-forward" onclick="$fac.queue('{{i.name}} {{i.surname}}',2);"></span>
 				</div>
 			</div>
 		{%endfor%}

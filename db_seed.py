@@ -15,11 +15,13 @@ if __name__ == '__main__':
     session.query(Participant).delete()
      
     pax = Participant()
-    pax.name = "Riding Horse"
+    pax.surname = "Horse"
+    pax.name = "Riding"
     pax.status = 1 # newbie
     session.add(pax)
     pax = Participant()
     pax.name = "Rat"
+    pax.surname = "Rat"
     pax.status = 2 # baby
     session.add(pax)
 

@@ -46,9 +46,12 @@ def newParticipant():
 def createParticipant():
 	pax = Participant()
 	name = format(request.form['name'])
+	surname = format(request.form['surname'])
 	status = format(request.form['status'])
 	if name!="":
 		pax.name=name
+	if surname!="":
+		pax.surname=surname
 	if status!="":
 		pax.status=status
 	try:

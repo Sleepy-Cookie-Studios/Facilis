@@ -11,8 +11,11 @@
 <h1>New Participant</h1>
 
 <form action="{{ url_for('createParticipant') }}" method="post" enctype="multipart/form-data">
-    <label>Name</label><br>
+    <label>First Name</label><br>
     <textarea class="fixxxed" rows="1" cols="16" name="name"></textarea><br>
+
+    <label>Last Name</label><br>
+    <textarea class="fixxxed" rows="1" cols="16" name="surname"></textarea><br>
     
     <label>Status</label><br>
     <input type="radio" name="status" value="1"> Newbie <br>

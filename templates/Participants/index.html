@@ -22,9 +22,9 @@
 	{%for i in list%}
 		<div class="col-md-3 col-sm-4 col-xs-6">
 				<div id="{{i.id|string}}" class="pax-tile{%if active%}{%if i.id in active%} selected{%endif%}{%endif%}" onclick="$fac.select({{i.id}});">
-					<img width="200" height="200" src="/static/images/{{i.name}}.jpg" alt="{{i.name}}">
-					<span id="{{i.name}}" class="name">
-						{{i.name}}
+					<img width="200" height="200" src="/static/images/{{i.name}} {{i.surname}}.jpg" alt="{{i.name}}">
+					<span id="{{i.name}} {{i.surname}}" class="name">
+						{{i.name}} {{i.surname}}
 						{%if i.status==1%}
 							<span class="glyphicon glyphicon-ice-lolly"></span>
 						{%elif i.status==2%}

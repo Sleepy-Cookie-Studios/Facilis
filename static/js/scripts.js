@@ -15,7 +15,6 @@ $(function () {
 	var list = [];
 
 	fac.select = function(id){
-		console.log(id);
 		ogClasses = document.getElementById(id.toString()).className;
 		classes = ogClasses.split(" ");
 		if (classes[1] == "selected"){
@@ -104,6 +103,23 @@ $(function () {
 		printQueue();
 	};
 
+	fac.setSpeaker = function(name, priority){
+		if (priority==1){
+			var index = queueOne.indexOf(name);
+			queueOne.splice(index,1);
+		}else{
+			var index = queueTwo.indexOf(name);
+			queueTwo.splice(index,1);
+		}
+
+		var img = document.getElementById("nextImg");
+		img.setAttribute("src","/static/images/"+name+".jpg");
+		document.getElementById("nextName").innerHTML = name;
+		document.getElementById("speakerT").innerHTML = ("00:00");
+
+		printQueue();
+	};
+
 	fac.queueRes = function(ones, twos){
 		document.getElementById("tempTitle").innerHTML = "Queue";
 
@@ -115,20 +131,26 @@ $(function () {
 			if (twos[i]==''){continue;}
 			$fac.queue(twos[i],2);
 		}
-
 	};
 
 	fac.search = function(){
 		var name = document.getElementById("search").value;
-		var res = document.getElementById(name)
+		var res = document.querySelector('[id^="'+name+'"]');
 		if (res){
-			var searchAnchor = document.createElement('a');
-		    searchAnchor.setAttribute("href", "#"+name);
-		    searchAnchor.click();
-		    searchAnchor.remove();
-    		fac.select(parseInt(res.parentElement.id));
+			words = res.id.split(" ")
+			for (i in words){
+				console.log(words[i])
+				if (name==words[i] || name==res.id){
+					var searchAnchor = document.createElement('a');
+			    	searchAnchor.setAttribute("href", "#"+res.id);
+			    	searchAnchor.click();
+			    	searchAnchor.remove();
+	        		// fac.select(parseInt(res.parentElement.id));
+				}
+			}
 		}
-	}
+	};
+
 	var a;
 	fac.delayedSearch = function(){
 		clearTimeout(a);
@@ -136,15 +158,15 @@ $(function () {
 	}
 
 	printQueue = function(){
-		q='';
+		q='High Priority: '+queueTwo.length+' remaining';
 		for (var i=0; i<queueTwo.length; i++){
 			name = "'"+queueTwo[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk" onclick="$fac.setSpeaker('+name+',2);"> <span id="nextName" class="name" onclick="$fac.setSpeaker('+name+',2);">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
-		q+='<div class="clearfix"></div> <hr>';
+		q+='<div class="clearfix"></div> <hr> Low Priority: '+queueOne.length+' remaining';
 		for (var i=0; i<queueOne.length; i++){
 			name = "'"+queueOne[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk"> <span id="nextName" class="name">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk" onclick="$fac.setSpeaker('+name+',1);"> <span id="nextName" class="name" onclick="$fac.setSpeaker('+name+',1);">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
 		document.getElementById("nextElement").innerHTML = q;
 

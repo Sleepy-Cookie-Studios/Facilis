@@ -15,8 +15,10 @@ class Participant(Base):
     __tablename__ = 'particpant'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(25), nullable = False, unique= True)
+    name = Column(String(15), nullable = False)
+    surname = Column(String(15),nullable = False)
     status = Column(Integer, nullable = False)
+    UniqueConstraint('name', 'surname', name='UC_name_surname')
 
 engine = create_engine('sqlite:///pax.db')
 
