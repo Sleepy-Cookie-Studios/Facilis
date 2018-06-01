@@ -18,7 +18,8 @@ class Participant(Base):
     name = Column(String(15), nullable = False)
     surname = Column(String(15),nullable = False)
     status = Column(Integer, nullable = False)
-    UniqueConstraint('name', 'surname', name='UC_name_surname')
+
+    __table_args__ = (UniqueConstraint('name', 'surname', name='UC_name_surname'),)
 
 engine = create_engine('sqlite:///pax.db')
 
