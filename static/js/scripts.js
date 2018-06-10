@@ -13,7 +13,10 @@ $(function () {
 	var queueOne = [];
 	var queueTwo = [];
 	var list = [];
+	var undo = []; //name, priority, position add/remove/both, oldspeaker
 
+
+	//select participants for session
 	fac.select = function(id){
 		ogClasses = document.getElementById(id.toString()).className;
 		classes = ogClasses.split(" ");
@@ -35,6 +38,7 @@ $(function () {
 		thingy.setAttribute("href","sess/"+list);
 	};
 
+	//increment speaker and total time
 	fac.times = function(){
 		speaker = document.getElementById("speakerT").innerHTML.split(":");
 		speaker[0] = parseInt(speaker[0]);
@@ -60,17 +64,21 @@ $(function () {
 		document.getElementById("totalT").innerHTML = ("0"+total[0]).slice(-2)+":"+("0"+total[1]).slice(-2)+":"+("0"+total[2]).slice(-2);
 	};
 
+	//add name to queue 
 	fac.queue = function(name, priority){
 		if (priority == 1){
 			queueOne.push(name);
+			undo = [name, priority, queueOne.length-1, 'remove'];
 		}
 		else{
 			queueTwo.push(name);
+			undo = [name, priority, queueTwo.length-1, 'remove'];
 		}
 
 		printQueue();
 	};
 
+	//remove name from queue
 	fac.removeQueue = function(name, priority){
 		if (priority == 1){
 			var index = queueOne.indexOf(name);
@@ -80,22 +88,29 @@ $(function () {
 			var index = queueTwo.indexOf(name);
 			queueTwo.splice(index,1);
 		}
-
+		undo = [name, priority, index, 'add'];
 		printQueue();
 	};
 
 	fac.nextSpeaker = function(){
+		var img = document.getElementById("nextImg");
+
+		oldSpeaker = img.src.split('/')
+		oldSpeaker = oldSpeaker[oldSpeaker.length-1].split('.')[0];
+
 		var name = queueTwo[0];
 		queueTwo.splice(0,1);
+		undo = [name, 2, 0, 'both', oldSpeaker, document.getElementById("speakerT").innerHTML];
 		if (!name){
 			name = queueOne[0];
 			queueOne.splice(0,1);
+			undo = [name, 1, 0, 'both', oldSpeaker, document.getElementById("speakerT").innerHTML];
 			if (!name){
 				name = "Jane Doe";
+				undo = [];
 			}
 		}
 
-		var img = document.getElementById("nextImg");
 		img.setAttribute("src","/static/images/"+name+".jpg");
 		document.getElementById("nextName").innerHTML = name;
 		document.getElementById("speakerT").innerHTML = ("00:00");
@@ -104,15 +119,21 @@ $(function () {
 	};
 
 	fac.setSpeaker = function(name, priority){
+		var img = document.getElementById("nextImg");
+
+		oldSpeaker = img.src.split('/');
+		oldSpeaker = oldSpeaker[oldSpeaker.length-1].split('.')[0];
+
 		if (priority==1){
 			var index = queueOne.indexOf(name);
 			queueOne.splice(index,1);
+			undo = [name, priority, index, 'both', oldSpeaker, document.getElementById("speakerT").innerHTML];
 		}else{
 			var index = queueTwo.indexOf(name);
 			queueTwo.splice(index,1);
+			undo = [name, priority, index, 'both', oldSpeaker, document.getElementById("speakerT").innerHTML];
 		}
 
-		var img = document.getElementById("nextImg");
 		img.setAttribute("src","/static/images/"+name+".jpg");
 		document.getElementById("nextName").innerHTML = name;
 		document.getElementById("speakerT").innerHTML = ("00:00");
@@ -120,6 +141,7 @@ $(function () {
 		printQueue();
 	};
 
+	//resume queue from previous session
 	fac.queueRes = function(ones, twos){
 		document.getElementById("tempTitle").innerHTML = "Queue";
 
@@ -155,7 +177,7 @@ $(function () {
 	fac.delayedSearch = function(){
 		clearTimeout(a);
 		a = setTimeout(fac.search,1000);
-	}
+	};
 
 	printQueue = function(){
 		q='High Priority: '+queueTwo.length+' remaining';
@@ -173,6 +195,41 @@ $(function () {
 		var thingy = document.getElementById("sessionSaver");
 		thingy.setAttribute("href","/sess/save/"+queueTwo+"|"+queueOne);
 	};
+
+	undoing = function(){
+		var evtobj = window.event? event : e;
+        if (evtobj.keyCode == 90 && evtobj.ctrlKey){
+			if (undo[3]=="add"){
+				if (undo[1] == 1){
+					queueOne.splice(undo[2],0,undo[0]);
+				}else{
+					queueTwo.splice(undo[2],0,undo[0]);
+				}
+			}else if (undo[3]=="remove"){
+				if (undo[1] == 1){
+					queueOne.splice(undo[2],1);
+				}else{
+					queueTwo.splice(undo[2],1);
+				}
+			}else if(undo[3]=="both"){
+
+				if (undo[1] == 1){
+					queueOne.splice(undo[2],0,undo[0]);
+				}else{
+					queueTwo.splice(undo[2],0,undo[0]);
+				}
+
+				var img = document.getElementById("nextImg");
+				img.setAttribute("src","/static/images/"+undo[4]+".jpg");
+				document.getElementById("nextName").innerHTML = undo[4].replace("%20", " ");
+				document.getElementById("speakerT").innerHTML = (undo[5]);
+			}
+			undo = [];
+			printQueue();
+		}
+	};
+	
+	document.onkeydown = undoing;
 
 	global.$fac = fac;
 })(window);
