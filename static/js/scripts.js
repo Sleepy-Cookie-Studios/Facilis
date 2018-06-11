@@ -166,7 +166,6 @@ $(function () {
 			if (ele[j].id=="next"){j+=1;continue;}
 			ele[j].className = choice[1-mode];
 		}
-
 	};
 
 	fac.search = function(){
@@ -197,12 +196,12 @@ $(function () {
 		q='High Priority: '+queueTwo.length+' remaining';
 		for (var i=0; i<queueTwo.length; i++){
 			name = "'"+queueTwo[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="Next to talk" onclick="$fac.setSpeaker('+name+',2);"> <span id="nextName" class="name" onclick="$fac.setSpeaker('+name+',2);">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueTwo[i]+'.jpg" alt="" onclick="$fac.setSpeaker('+name+',2);"> <span id="nextName" class="name" onclick="$fac.setSpeaker('+name+',2);">'+queueTwo[i]+'</span> <div onclick="$fac.removeQueue('+name+', 2);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
 		q+='<div class="clearfix"></div> <hr> Low Priority: '+queueOne.length+' remaining';
 		for (var i=0; i<queueOne.length; i++){
 			name = "'"+queueOne[i]+"'";
-			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="Next to talk" onclick="$fac.setSpeaker('+name+',1);"> <span id="nextName" class="name" onclick="$fac.setSpeaker('+name+',1);">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
+			q+='<div class="col-xs-12"> <div id="next" class="pax-tile-small"> <img id="nextImg" width="40" height="40" src="/static/images/'+queueOne[i]+'.jpg" alt="" onclick="$fac.setSpeaker('+name+',1);"> <span id="nextName" class="name" onclick="$fac.setSpeaker('+name+',1);">'+queueOne[i]+'</span> <div onclick="$fac.removeQueue('+name+', 1);"><span class="glyphicon glyphicon-scissors"></span></div> </div> </div>';
 		}
 		document.getElementById("nextElement").innerHTML = q;
 

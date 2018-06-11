@@ -8,8 +8,8 @@
 
 {% if list %}
 	<div class="wrappper">
-	<div class="container col-md-9 col-sm-8 indyScroll">
-		<div id="view-select">
+	<div class="container col-md-9 col-sm-8 col-xs-7 indyScroll">
+		<div id="view-select" class="hidden-xs">
 			<button onclick="$fac.toggleView(1);"><span class="glyphicon glyphicon-th-large"></span></button>
 			<button onclick="$fac.toggleView(0);"><span class="glyphicon glyphicon-th-list"></span></button>
 		</div>
@@ -36,7 +36,7 @@
 			</div>
 		{%endfor%}
 	</div>
-	<div class="col-md-3 col-sm-4 indyScroll">
+	<div class="col-md-3 col-sm-4 col-xs-5 indyScroll">
 		{%if finger or fingers%}
 			<h1 id="tempTitle" class="text-center" onclick="$fac.queueRes({{finger}},{{fingers}});">Resume Queue</h1>
 		{%else%}
@@ -49,14 +49,18 @@
 		<div class="col-xs-12">
 			<a href="#" onclick="$fac.nextSpeaker();">
 				<div id="next" class="pax-tile">
-					<img id="nextImg" width="200" height="200" src="/static/images/Jane Doe.jpg" alt="Next to talk">
+					<img id="nextImg" width="200" height="200" src="/static/images/Jane Doe.jpg" alt="Next">
 					<span id="nextName" class="name">Jane Doe</span>
 				</div>
 			</a>
 		</div>
 		<div class="clearfix"></div>
 		<hr>
-		<div id="nextElement"></div>
+		<div id="nextElement">
+			High Priority: 0 remaining
+			<hr>
+			Low Priority: 0 remaining
+		</div>
 	</div>
 </div>
 {% endif %}
