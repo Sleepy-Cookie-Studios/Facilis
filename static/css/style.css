@@ -102,7 +102,7 @@ h2{
   object-fit: cover;
 }
 
-.pax-tile span.name {
+.pax-tile span.name, .pax-tile-comp span.name  {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -116,7 +116,7 @@ h2{
   padding: 5px;
 }
 
-.pax-tile div {
+.pax-tile div, .pax-tile-comp div {
   position: absolute;
   top: 0;
   right: 0;
@@ -198,6 +198,37 @@ label{
 
 .pax-tile-small img {
   object-fit: cover;
+}
+
+.pax-tile-comp {
+  height: 80px;
+}
+
+.pax-tile-comp img {
+  display: none;
+}
+
+.pax-tile-comp span#oneFinger {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 50%;
+  font-size: 1.3em;
+  line-height: 1.2;
+}
+
+.pax-tile-comp span#twoFingers {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  width: 50%;
+  font-size: 1.3em;
+  line-height: 1.2;
+}
+
+#view-select {
+  position: absolute;
+  right: 0;
 }
 
 #search{

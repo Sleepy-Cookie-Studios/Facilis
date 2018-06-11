@@ -155,6 +155,20 @@ $(function () {
 		}
 	};
 
+	fac.toggleView = function(mode){
+		var j=0;
+		var choice = ["pax-tile", "pax-tile-comp"];
+
+		var ele = document.getElementsByClassName(choice[mode]);
+		var s = ele.length;
+		if (s==0){return;}
+		for (var i =0; i<s; i++){
+			if (ele[j].id=="next"){j+=1;continue;}
+			ele[j].className = choice[1-mode];
+		}
+
+	};
+
 	fac.search = function(){
 		var name = document.getElementById("search").value;
 		var res = document.querySelector('[id^="'+name+'"]');

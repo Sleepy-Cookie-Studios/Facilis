@@ -9,6 +9,10 @@
 {% if list %}
 	<div class="wrappper">
 	<div class="container col-md-9 col-sm-8 indyScroll">
+		<div id="view-select">
+			<button onclick="$fac.toggleView(1);"><span class="glyphicon glyphicon-th-large"></span></button>
+			<button onclick="$fac.toggleView(0);"><span class="glyphicon glyphicon-th-list"></span></button>
+		</div>
 		<h1 class="text-center">Participants</h1>
 		{%for i in list%}
 			<div class="col-md-4 col-sm-6 col-xs-6 col-lg-3">
