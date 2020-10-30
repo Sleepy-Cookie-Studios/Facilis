@@ -58,7 +58,7 @@ def createParticipant():
 	try:
 		session.add(pax)
 		session.commit()
-		photos.save(request.files['photo'],name = name+".jpg")
+		photos.save(request.files['photo'],name = name + " " + surname + ".jpg")
 		return redirect(url_for('participants'))
 	except exc.IntegrityError:
 		session.rollback()
